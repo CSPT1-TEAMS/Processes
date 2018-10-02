@@ -9,6 +9,14 @@
 int main(void)
 {
     // Your code here 
-    
+    FILE *fp = fopen("text.txt","w+");
+    int rc = fork();
+    if (rc == 0) {
+        printf("In Child, pid %d", (int) getpid());
+        // *fp.write("hello")
+
+    }
+    // *fp.write("1000");
+
     return 0;
 }
