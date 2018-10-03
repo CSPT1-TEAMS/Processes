@@ -10,7 +10,25 @@
 
 int main(void)
 {
-    // Your code here    
 
+    int rc = fork();
+
+    if (rc < 0)
+    {
+        printf("Fork failed");
+        exit(1);
+    }
+    else if (rc == 0)
+    {
+        printf("CHILD HERE.");
+        char *arr[] = {"ls", "-1", NULL};
+        execvp("ls", arr);
+        printf("SECRET HIDDEN CODE. YOU CANNOT SEE THIS.");
+    }
+    else
+    {
+        wait(NULL);
+        printf("PARENT HERE!");
+    }
     return 0;
 }
