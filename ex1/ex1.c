@@ -9,6 +9,19 @@
 int main(void)
 {
     // Your code here
+    int x = 100;
+    int rc = fork();
 
+    if(rc < 0){
+        printf("Fork failed");
+        exit(1);
+    } else if(rc == 0){
+        x = 1055;
+        printf("Child x variable is %d\n", x);
+    } else {
+        printf("Parent x variable is still %d\n", x);
+        x = 0;
+        printf("Parent x variable is now %d\n", x);
+    }
     return 0;
 }
