@@ -11,6 +11,15 @@
 int main(void)
 {
     // Your code here    
+    // fork();
+    char* argv[3];
+    argv[0] = "/bin/ls";
+    argv[1] = "-l";
+    argv[2] = NULL;
+    // execl("/bin/ls", "ls", NULL);
+    execv("/bin/ls",argv);
+    
+    
 
     return 0;
 }
