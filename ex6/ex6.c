@@ -20,7 +20,22 @@ and `clock_gettime()` should work just fine.
 
 int main()
 {
-    // Your code here
-    
+  u_int64_t sum;
+  for (int i = 0; i < number_iter; i++){
+    uint64_t diff;
+	struct timespec start, end;
+	int i;
+
+	/* measure monotonic time */
+	clock_gettime(CLOCK_MONOTONIC, &start);	/* mark start time */
+	// sleep(1);	/* do stuff */
+    write(1,NULL,0);
+	clock_gettime(CLOCK_MONOTONIC, &end);	/* mark the end time */
+
+	diff = BILLION * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec;
+    sum = sum + diff;
+  }
+  long avg = (long) sum / number_iter;
+   printf("%ld\n", avg);
     return 0;
 }
