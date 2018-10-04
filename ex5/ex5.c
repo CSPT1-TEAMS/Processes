@@ -40,7 +40,7 @@ int main(void)
 
     } else {
         wait(NULL);
-        close(pipePointers[1]);
+        close(pipePointers[1]); // Not, if you dont close the pipe, it hangs without ever reading the piped data.
         printf("PARENT HERE\n");
 
         while(read(pipePointers[0], pipeBuffer, MSGSIZE) > 0)

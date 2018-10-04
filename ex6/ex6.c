@@ -20,7 +20,24 @@ and `clock_gettime()` should work just fine.
 
 int main()
 {
-    // Your code here
+    struct timespec start, end;
+    int total;
+    float average;
+    long diff;
+
+    for(int i = 0; i < number_iter; i++)
+    {
+        clock_gettime(CLOCK_MONOTONIC, &start);   
+        write(stdout, NULL, 0); // just call write on stdout, dont give it anything, just calling.
+        clock_gettime(CLOCK_MONOTONIC, &end);
+
+        diff = BILLION * (end.tv_sec - start.tv_sec) + end.tv_nsec - start.tv_nsec; // dont get this. But it was in Rutgers so...
+        total += diff;
+    }
+
+    average = total / number_iter;
+
+    printf("Elapsed time is %.2f\n", average);
     
     return 0;
 }
